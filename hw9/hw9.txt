@@ -1,0 +1,44 @@
+hw9
+
+Nathan Knight
+004749179
+
+1)
+It looks like the input layer is a two-demensional array of size 28x28.
+This most likely represents the pixels of each image.
+
+The next layer is a set of neurons that has 28*28=784 inputs and 512 outputs.
+
+The next layer is a set of neurons that has 512 inputs and 128 outpus.
+
+The next layer is a set of neurons that has 128 inputs and 10 outputs
+
+The Final layer is the the 10 outputs of the last neuron layer.
+
+2)
+The activation function is ReLU or g(x) = max(0, x)
+
+3)
+96%
+
+4)
+91%
+
+5)
+Yes it went down 5% because there wasn't as many neurons to be as precise
+
+6)
+10:   56%
+100:  83%
+200:  88%
+300:  91%
+400:  92%
+500:  93%
+600:  93%
+700:  92%
+800:  94%
+1000: 95%
+
+Yes as more iterations happen, the training becomes more and more accurate
+thus trending to upper 90%
+

@@ -1,0 +1,152 @@
+Nathan Knight
+004749179
+
+HW7
+
+1) Prove the following identity:
+Pr(a1, ..., an | b) = Pr(a1 | a2, ..., an, b)Pr(a2 | a3, ..., an, b)...Pr(an | b)
+
+LHS Using Bayes Conditioning
+Pr(a1, ..., an, b)/Pr(b)
+
+RHS Using Bayes Conditioning
+(Pr(a1, ..., an, b)/Pr(a2, ..., an, b))(Pr(a2, ..., an, b)/Pr(a3, ..., an, b))...(Pr(an-1, an, b)/Pr(an, b))(Pr(an, b)/Pr(b))
+
+As we can see from the RHS, everything will cancel leaving just
+Pr(a1, ..., an, b)/Pr(b)
+
+This is the same as the LHS
+
+Thus the identity is proven.
+
+2) Pr(Oil | T) = ?
+
+Given
+Pr(Oil) 	       = 0.5
+Pr(NG)             = 0.2
+Pr(~Oil & ~NG)     = 0.3
+Pr(T | Oil)        = 0.9
+Pr(T | NG)     	   = 0.3
+Pr(T | ~Oil & ~NG) = 0.1
+
+Pr(Oil | T) = Pr(T | Oil)Pr(Oil)/Pr(T) = 0.9*0.5/Pr(T) = .45/Pr(T)
+
+Because we can't have Oil and NG in the same exact place, we can consider them mutually exclusive. To exhaust the rest of the
+space, we need to fill the rest of it with ~Oil & ~NG. Now our space is mutually exclusive and exhaustive.
+
+Pr(T) = Pr(T | Oil)Pr(Oil) + Pr(T | NG)Pr(NG) + Pr(T | ~Oil & ~NG)Pr(~Oil & ~NG)
+	  = 0.9*0.5 + 0.3*0.2 + 0.1*0.3
+	  = .45 + .06 + .03
+	  = .54
+
+Thus, Pr(Oil | T) = .45/.54
+				  = .833333
+
+3)
+Bayesian Network
+
+(a)       (b)      (c)
+ |\ \    / |\    / /|
+ | \  \ /  | \ /  / |
+ |  \  /\  | /\  /  |
+ |   \/   \|   \/   |
+ |   /\  /  \  /\   |
+ |  /  \   |  /  \  |
+ | / /  \  | /  \ \ |
+ |//     \ |/     \\|
+ X1       X2        X3
+
+  C  Pr(C)
+ _________
+|   |     |
+| a | 1/3 |
+|   |     |
+| b | 1/3 |
+|   |     |
+| c | 1/3 |
+|___|____ |
+
+X1 = X2 = X3
+
+  C  Pr(h) Pr(t)
+ _______________
+|   |     |     |
+| a | .2  | .8  |
+|   |     |     |
+| b | .4  | .6  |
+|   |     |     |
+| c | .8  | .2  |
+|___|_____|_____|
+
+
+4a)
+Ind(A, {}, BE),
+Ind(B, {}, AC),
+Ind(C, A, BDE),
+Ind(D, AB, CE),
+Ind(E, B, ACDFG),
+Ind(F, CD, ABE),
+Ind(G, F, ABCDEH),
+Ind(H, FE, ABCDG)
+
+4b)
+d-sep(A, F, E) No
+Because we can look at A,D,B which is converging. We know F which is a decendant
+of D thus connected. Now we look at D,B,E which is diverging. We don't know B so
+this is also connected. Thus we have a connected path from A to E and they are
+not d-separated.
+
+d-sep(G, B, E) Yes
+Because the only way to get from G to E is to got through H or B. We know B so 
+any path we take that goes through B will be disconnected because D,B,E is
+diverging. Any path we take going through H is also disconnected because F,H,E
+is converging and we don't know H or it's decendants. Thus any path from G to E
+is d-separated.
+
+
+d-sep(AB, CDE, GH) Yes
+Because any path that goes from AB to GH has to go through CDE sequentially. 
+We know CDE so all paths are disconnected. Thus d-separated.
+
+
+4c)
+Pr(A)Pr(B)Pr(C|A)Pr(D|A,B)Pr(E|B)Pr(F|C,D)Pr(G|F)Pr(H|E,F)
+
+4d)
+A and B are independent thus
+
+Pr(A=1, B=1) = Pr(A=1)Pr(B=1)
+			 = .2*.7
+			 = .14
+
+E and A are independent thus
+
+Pr(E=0 | A=0) = Pr(E=0)
+			  = Pr(E=0 | B)Pr(B) + Pr(E=0 | ~B)Pr(~B)
+			  = .9*.7 + .1*.3
+			  = .63 + .03
+			  = .66
+
+5a)
+alpha: A => B
+       ~A + B
+Models {w0, w2, w3}
+
+5b)
+Pr(alpha) = Prw0(A, B) + Prw2(A, B) + Prw3(A, B)
+		  = .3 + .1 + .4
+		  = .8
+
+5c)
+Pr(A, B | alpha) = Pr(A, B, alpha)/Pr(alpha)
+				 = .3/.8
+				 = .375
+
+5d)
+Pr(A => ~B | alpha) = Pr(~A + ~B | alpha)
+					= Pr((~A + ~B), alpha)/Pr(alpha)
+					= (.1 + .4)/.8
+					= .5/.8
+					= .625
+
+This makes sense because it is the compliment of 5c
